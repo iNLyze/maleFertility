@@ -1,0 +1,89 @@
+---
+title       : Predicting male fertility
+subtitle    : Documentation
+author      : iNLyze
+job         : 
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+
+
+```{r includes, warning=FALSE, echo=FALSE, results='hide'}
+if (!require(dplyr))
+        install.packages("dplyr")
+if (!require(plyr))
+        install.packages("plyr")
+if (!require(caret))
+        install.packages("caret")
+if (!require(randomForest))
+        install.packages("randomForest")
+if (!require(gbm))
+        install.packages("gbm")
+if (!require(pROC))
+        install.packages("pROC")
+
+```
+
+
+```{r loadData, echo=FALSE}
+destfile <- "fertility.csv"
+destpath <- paste0(getwd(), destfile)
+
+fertility <- read.csv(destpath, header = F, sep = ",", dec = ".")
+
+
+names(fertility) <- c("season", "age", "diseases", "trauma", "surgery", "fevers", "alcohol", "smoking", "sitting", "Outcome")
+    
+    #c("Season", "Age", "Childhood", "Accident", "Surgical", "Fever", "Alcohol", "Smoking", "Sit.Hours", "Outcome")
+
+```
+
+
+
+## Meaning of fertility
+
+"Infertility and problems of impaired fecundity have been a concern through ages and is also a significant clinical problem today, which affects 8–12% of couples worldwide. Of all infertility cases, approximately 40–50% is due to “male factor” infertility and as many as 2% of all men will exhibit suboptimal sperm parameters."
+[Kumar et al](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4691969/)
+*J Hum Reprod Sci.* 2015 Oct-Dec; 8(4): 191–196. 
+
+
+*	Direct analysis of sperm quality requires expert knowledge and specialized equipment
+*	Sperm quality is often affected by a number of risk factors
+*	Predicting male fertility from such factors may give a first indication
+*	Could save cost and time by focusing more in-depth analysis on persons who are more likely whose fertility might be altered. 
+
+--- .class #id 
+
+## How the data was obtained:
+*	Data was originally created as part of [Gil et al](https://www.researchgate.net/profile/Joaquin_De_Juan/publication/230868076_Predicting_seminal_quality_with_artificial_intelligence_methods/links/09e415058f10cc3081000000.pdf)
+*	A subset of the original data (100 x 10) is available at [UCI](https://archive.ics.uci.edu/ml/datasets/Fertility)
+
+
+## How the model was built:
+*	Data set is already normalized and tidy and can be used directly for modeling
+*	The data set was split into training and a test set (70%/30%, respectively)
+*	A random forest model was built using 632 Bootstrapping with 100 iterations and 100 repeats
+*	This model achieved an accuracy of 93%
+*	About comparable to performance achieved with best model in original publication
+
+--- .class #id 
+
+## Limitations of model:
+*	Data set imbalanced `r table(fertility$Outcome)`
+*	Tendency to make type I errors (if N is positive class)
+*	Small data set, only 100 samples
+*	10 dimensions, original publication used nn dimensions
+*	Age is confined to inputs only between 18 - 36 years due to nature of study (and relavent age when fatherhood is desired by large proportion of men). Predicting outside this age interval is potentially unreliable. 
+
+--- .class #id 
+
+## How to use the application:
+*	Type in require information and press submit
+*	Data is normalized to match format of data set
+*	To save time model is loaded from file, only prediction is made
+*	Output has been chosen as neutral as possible due to very personal nature of the matter. Therefore no graphics and avoidance of emotional language. Show respect to people suffering from medical condition. 

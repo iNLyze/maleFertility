@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Predicting male fertility</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Predicting male fertility">
+  <meta name="author" content="iNLyze">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Predicting male fertility</h1>
+    <h2>Documentation</h2>
+    <p>iNLyze<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Meaning of fertility</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>&quot;Infertility and problems of impaired fecundity have been a concern through ages and is also a significant clinical problem today, which affects 8–12% of couples worldwide. Of all infertility cases, approximately 40–50% is due to “male factor” infertility and as many as 2% of all men will exhibit suboptimal sperm parameters.&quot;
+<a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4691969/">Kumar et al</a>
+<em>J Hum Reprod Sci.</em> 2015 Oct-Dec; 8(4): 191–196. </p>
+
+<ul>
+<li>  Direct analysis of sperm quality requires expert knowledge and specialized equipment</li>
+<li>  Sperm quality is often affected by a number of risk factors</li>
+<li>  Predicting male fertility from such factors may give a first indication</li>
+<li>  Could save cost and time by focusing more in-depth analysis on persons who are more likely whose fertility might be altered. </li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>How the data was obtained:</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>  Data was originally created as part of <a href="https://www.researchgate.net/profile/Joaquin_De_Juan/publication/230868076_Predicting_seminal_quality_with_artificial_intelligence_methods/links/09e415058f10cc3081000000.pdf">Gil et al</a></li>
+<li>  A subset of the original data (100 x 10) is available at <a href="https://archive.ics.uci.edu/ml/datasets/Fertility">UCI</a></li>
+</ul>
+
+<h2>How the model was built:</h2>
+
+<ul>
+<li>  Data set is already normalized and tidy and can be used directly for modeling</li>
+<li>  Training set comprised 70% of data</li>
+<li>  rf model built using 632 Bootstrapping with 100 iterations and 100 repeats</li>
+<li>  Tested different models, mainly gbm, rf and svm.</li>
+<li>  Achieved about 85% accuracy with svm, 93% with rf model used </li>
+<li>  About comparable to performance achieved with best model in original publication</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Limitations of model:</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>  Data set imbalanced --&gt; Low specificity of only 0.333</li>
+<li>  Tendency to make type I errors (if N is positive class)</li>
+<li>  Small data set, only 100 samples</li>
+<li>  10 dimensions, original publication used nn dimensions</li>
+<li>  Age is confined to inputs only between 18 - 36 years due to nature of study (and relavent age when fatherhood is desired by large proportion of men). Predicting outside this age interval is potentially unreliable. </li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>How to use the application:</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>  Type in require information and press submit</li>
+<li>  Data is normalized to match format of data set</li>
+<li>  To save time model is loaded from file, only prediction is made</li>
+<li>  Output has been chosen as neutral as possible due to very personal nature of the matter. Therefore no graphics and avoidance of emotional language. Show respect to people suffering from medical condition. </li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Meaning of fertility'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='How the data was obtained:'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Limitations of model:'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='How to use the application:'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
