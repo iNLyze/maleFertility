@@ -26,6 +26,13 @@ shinyUI(fluidPage(
     ),
   p("The original publication uses a larger data set with more variables, whereas the data set used for building this application was restricted to 10 variables. 
     The model was built using a random forest classifier from the 'rf' package."),
+  p("Full documentation is found on",
+  span(
+      a("RPubs", href="http://rpubs.com/iNLyze/maleFertility"),
+      style = "blue"
+      ),
+  "."
+  ),
   br(),
   strong("DISCLAIMER: This application was created for research purposes only. THIS APPLICATION IS NOT A DIAGNOSTIC TOOL. If you suffer from any medical condition please consult a physician."),
   strong("By clicking the 'Submit' button below or using this application in any way you agree that you do so at your own responsibility. You agree that the autor will not take any liability for any consequence of using this application. "),

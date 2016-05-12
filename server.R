@@ -7,7 +7,15 @@
 
 library(shiny)
 source('fertility_utils.R')
-require(stringr)
+if (!require(stringr)) {
+    install.packages("stringr")
+}
+if (!require(gbm)) {
+    install.packages("gbm")
+}
+if (!require(pROC)) {
+    install.packages("pROC")
+}    
 
 
 
